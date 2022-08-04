@@ -1,0 +1,1 @@
+export { RedactModal } from "./RedactModal";
