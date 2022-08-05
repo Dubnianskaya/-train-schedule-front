@@ -14,6 +14,7 @@ const createChunk = (componentName) => {
 };
 
 const Trains = createChunk("Trains");
+const SearchPage = createChunk("SearchPage");
 
 export function App() {
   return (
@@ -23,6 +24,7 @@ export function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="trains" element={<Trains />} />
+          <Route path="search" element={<SearchPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>

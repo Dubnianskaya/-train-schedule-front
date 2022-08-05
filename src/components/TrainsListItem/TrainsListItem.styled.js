@@ -16,5 +16,5 @@ export const DataTitle = styled.p`
 export const TrainData = styled.p`
   font-size: 18px;
   line-height: 26px;
-  color: rgb(155, 159, 170); ;
+  color: #1976d2;
 `;

@@ -27,6 +27,8 @@ export function RedactModal({ open, handleClose, trainData, setListItem }) {
           initialData={trainData}
           handleClose={handleClose}
           setListItem={setListItem}
+          btnTxt="Зберігти зміни"
+          btnLoadingTxt="Зберігаємо зміни..."
         />
       </Box>
     </Modal>

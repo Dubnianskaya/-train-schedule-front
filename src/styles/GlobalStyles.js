@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-export const GlobalStyles = (theme) => css`
+export const GlobalStyles = () => css`
   *::before,
   *::after {
     box-sizing: inherit;
@@ -9,9 +9,10 @@ export const GlobalStyles = (theme) => css`
   body {
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
     min-height: 100vh;
     width: 100%;
-    background-color: #3895ff7a;
+    background-color: #7ad8f5;
   }
   main {
     flex: 1;

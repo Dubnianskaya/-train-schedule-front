@@ -4,8 +4,12 @@ import { baseURL } from "../constants";
 
 axios.defaults.baseURL = baseURL;
 
-export async function getTrains() {
-  const data = await axios.get(`/trains`).then((res) => res.data);
+export async function getTrains(sort) {
+  let url = `/trains`;
+  if (sort) {
+    url = `/trains?sort=${sort}`;
+  }
+  const data = await axios.get(url).then((res) => res.data);
   return data;
 }
 
@@ -21,5 +25,14 @@ export async function deleteTrains(id) {
 
 export async function updateTrains(id, train) {
   const data = await axios.put(`trains/${id}`, train).then((res) => res.data);
+  return data;
+}
+
+export async function searchTrains(departure, arrival) {
+  let url = `/trains/search`;
+  if (departure && arrival) {
+    url = `/trains/search?departure=${departure}&arrival=${arrival}`;
+  }
+  const data = await axios.get(url).then((res) => res.data);
   return data;
 }

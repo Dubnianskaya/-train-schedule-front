@@ -1,13 +1,16 @@
 import styled from "@emotion/styled";
 import TextField from "@mui/material/TextField";
+import { mediaTablet } from "../../functions/media";
 
 export const FormTitle = styled.h1`
+  font-size: 28px;
+  text-align: center;
+  color: #000;
+  ${mediaTablet(`
   font-size: 36px;
   line-height: 26px;
   margin-bottom: 32px;
-  text-align: center;
-  color: ##3f51b5;
-  padding-top: 160px;
+    `)}
 `;
 
 export const CalculatorForm = styled.div`
@@ -20,31 +23,31 @@ export const TextFieldStyled = styled(TextField)`
   display: block;
   margin: 40px 20px 0 20px;
   background-color: #cfefff;
+  ${mediaTablet(`
+  margin: 20px 10px 0 10px;
+  `)}
+  label {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1976d2;
+  }
+  input {
+    width: 300px;
+    ${mediaTablet(`
+    width: 250px;
+    `)}
+  }
+  fieldset {
+    border-color: #cfefff;
+  }
 `;
 
 export const FormFlexContainer = styled.div`
   margin-bottom: 40px;
+  ${mediaTablet(`
   display: flex;
-`;
-
-export const Button = styled.button`
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 17px;
-  padding: 13px 25px;
-  width: 210px;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  color: #fff;
-  background-color: #3f51b5;
-  border: none;
-  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
-  border-radius: 30px;
-  transition: transform ('0.5s ease 0s'),
-   
-  &:hover,
-  &:focus {
-    transform: scale(1.1);
+  margin-bottom: 40px;
+  `)}
 `;
 
 export const AutocompleteBox = styled.div`
@@ -60,7 +63,7 @@ export const StationsList = styled.ul`
   overflow: auto;
   top: 30;
   left: 0;
-  z-index: 5;
+  z-index: 10;
   border: 1px solid #e0e0e0;
   padding: 0 10px 0 10px;
   border-radius: 5px;
