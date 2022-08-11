@@ -1,8 +1,13 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { fetchStations } from "../../services/stationsAPI";
 import Backdrop from "@mui/material/Backdrop";
-import { TextFieldStyled, AutocompleteBox } from "./AddTrainForm.styled";
+import {
+  TextFieldStyled,
+  AutocompleteBox,
+  InputContainer,
+} from "./AddTrainForm.styled";
 import { StantionsList } from "./StantionsList";
+import debounce from "lodash.debounce";
 
 export const SeachInput = ({
   searchString,
@@ -32,12 +37,14 @@ export const SeachInput = ({
     }
   };
 
+  const debouncedFunc = useCallback(debounce(fetchStationsByQuery, 300), []);
+
   useEffect(() => {
-    fetchStationsByQuery(searchString, setStationsArray);
-  }, [searchString, setStationsArray]);
+    debouncedFunc(searchString, setStationsArray);
+  }, [debouncedFunc, searchString, setStationsArray]);
 
   return (
-    <>
+    <InputContainer style={styles}>
       <AutocompleteBox>
         <TextFieldStyled
           value={searchString}
@@ -48,7 +55,6 @@ export const SeachInput = ({
           label={label}
           name={name}
           autoComplete="off"
-          style={styles}
         />
         {isFocus && (
           <StantionsList
@@ -65,6 +71,6 @@ export const SeachInput = ({
         open={isFocus}
         onClick={() => setIsFocus(false)}
       />
-    </>
+    </InputContainer>
   );
 };

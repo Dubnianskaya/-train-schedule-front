@@ -1,10 +1,15 @@
 import { useState } from "react";
 import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import toast from "react-hot-toast";
-import { DataContainer, DataTitle, TrainData } from "./TrainsListItem.styled";
+import {
+  DataContainer,
+  DataTitle,
+  TrainData,
+  CardContainer,
+  DisabledTitle,
+} from "./TrainsListItem.styled";
 import { deleteTrains } from "../../services/trainsApi";
 import { RedactModal } from "../RedactModal";
 import { formatDate } from "../../functions";
@@ -15,6 +20,7 @@ export const TrainsListItem = ({ train, setTrainsList }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const isTrainDisabled = new Date() > departureDate;
 
   const onTrainDelete = async (id) => {
     try {
@@ -32,7 +38,8 @@ export const TrainsListItem = ({ train, setTrainsList }) => {
 
   return (
     <Card>
-      <CardContent>
+      <CardContainer isDisabled={isTrainDisabled}>
+        {isTrainDisabled && <DisabledTitle>Рейс завершено</DisabledTitle>}
         <DataContainer>
           <DataTitle>Місце відправлення:</DataTitle>
           <TrainData>{departure.station}</TrainData>
@@ -50,18 +57,23 @@ export const TrainsListItem = ({ train, setTrainsList }) => {
           <TrainData>{formatDate(arrivalDate)}</TrainData>
         </DataContainer>
         <Stack spacing={2} direction="row" justifyContent="center">
-          <Button variant="contained" type="button" onClick={handleOpen}>
+          <Button
+            variant="outlined"
+            type="button"
+            onClick={handleOpen}
+            disabled={isTrainDisabled}
+          >
             Редагувати
           </Button>
           <Button
-            variant="outlined"
+            variant="contained"
             type="button"
             onClick={() => onTrainDelete(train._id)}
           >
             Видалити
           </Button>
         </Stack>
-      </CardContent>
+      </CardContainer>
       <RedactModal
         open={open}
         handleClose={handleClose}

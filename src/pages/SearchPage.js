@@ -17,6 +17,7 @@ import {
 import { Container } from "../components/Container";
 import { TrainsList } from "../components/TrainsList";
 import { SeachInput } from "../components/AddTrainForm/SearchInput";
+import { Loader } from "../components/Loader";
 
 export const SearchPage = () => {
   const [trainsArray, setTrainsArray] = useState([]);
@@ -120,6 +121,7 @@ export const SearchPage = () => {
               </IconButton>
             </TrainListSeachForm>
           </TrainsFilterContainer>
+          {loading && <Loader />}
           {!loading && trainsArray.length === 0 ? (
             <TrainsPlugContainer>
               <TrainsPlugTitle>Нічого не знайдено</TrainsPlugTitle>

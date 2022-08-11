@@ -13,6 +13,7 @@ import {
 } from "../components/TrainsList/TrainsList.styled";
 import { Container } from "../components/Container";
 import { Filter } from "../components/Filter";
+import { Loader } from "../components/Loader";
 
 export const Trains = () => {
   const [trainsArray, setTrainsArray] = useState([]);
@@ -36,14 +37,16 @@ export const Trains = () => {
   return (
     <StyledContainer>
       <Container>
-        {!loading && trainsArray.length === 0 ? (
+        {loading && <Loader />}
+        {!loading && trainsArray.length === 0 && (
           <TrainsPlugContainer>
             <TrainsPlugTitle>
               Відсутні потяги у списку.
               <Link to="/">Почніть додавати потяги</Link>
             </TrainsPlugTitle>
           </TrainsPlugContainer>
-        ) : (
+        )}
+        {!loading && trainsArray.length !== 0 && (
           <TrainPageWrapper>
             <TrainsFilterContainer>
               <Filter sort={sort} setSort={setSort} />

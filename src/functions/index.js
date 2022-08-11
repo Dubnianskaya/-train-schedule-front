@@ -1,2 +1,8 @@
-export { formatDate, setInputMinDate, setMinDate } from "./formatDate";
+export {
+  formatDate,
+  setInputMinDate,
+  setMinDate,
+  setDepMaxDate,
+  setArrMaxDate,
+} from "./formatDate";
 export * from "./media";

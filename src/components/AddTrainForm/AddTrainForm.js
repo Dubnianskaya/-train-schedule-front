@@ -1,7 +1,12 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Button from "@mui/material/Button";
-import { setInputMinDate, setMinDate } from "../../functions";
+import {
+  setInputMinDate,
+  setMinDate,
+  setDepMaxDate,
+  setArrMaxDate,
+} from "../../functions";
 import { SeachInput } from "./SearchInput";
 import { DateInput } from "./DateInput";
 import { CalculatorForm, FormFlexContainer } from "./AddTrainForm.styled";
@@ -57,7 +62,12 @@ export const AddTrainForm = ({
     ) {
       return toast.error("Усі поля повинні бути заповнені!");
     } else if (departureDateValue === arrivalDateValue) {
-      toast.error(`Дати відправлення та прибуття не можуть бути однакові`);
+      toast.error("Дати відправлення та прибуття не можуть бути однакові");
+    } else if (
+      Object.keys(departureObj).length === 0 ||
+      Object.keys(arrivalObj).length === 0
+    ) {
+      toast.error("Оберіть станцію зі списку");
     } else {
       try {
         setLoading(true);
@@ -116,6 +126,7 @@ export const AddTrainForm = ({
               value={departureDateValue}
               setValue={setDepartureDateValue}
               minTime={setMinDate(new Date())}
+              maxTime={setDepMaxDate(new Date())}
               name="departureDate"
               label="Оберіть час відправлення"
             />
@@ -123,6 +134,7 @@ export const AddTrainForm = ({
               value={arrivalDateValue}
               setValue={setArrivalDateValue}
               minTime={departureDateValue}
+              maxTime={setArrMaxDate(new Date(departureDateValue))}
               name="arrivalDate"
               label="Оберіть час прибуття"
             />

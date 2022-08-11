@@ -21,11 +21,7 @@ export const CalculatorForm = styled.div`
 
 export const TextFieldStyled = styled(TextField)`
   display: block;
-  margin: 40px 20px 0 20px;
   background-color: #cfefff;
-  ${mediaTablet(`
-  margin: 20px 10px 0 10px;
-  `)}
   label {
     font-size: 18px;
     font-weight: 700;
@@ -61,21 +57,26 @@ export const StationsList = styled.ul`
   margin: 0;
   padding: 0;
   overflow: auto;
-  top: 30;
   left: 0;
   z-index: 10;
   border: 1px solid #e0e0e0;
-  padding: 0 10px 0 10px;
   border-radius: 5px;
   background-color: #fff;
 `;
 
 export const StationsItem = styled.li`
-  padding: 5px 0;
+  padding: 5px;
   border-bottom: 1px solid #e0e0e0;
   cursor: pointer;
   &:hover,
   &:focus {
     background-color: #e0e0e0;
   }
+`;
+
+export const InputContainer = styled.div`
+  margin: 20px;
+  ${mediaTablet(`
+margin: 10px;
+`)}
 `;

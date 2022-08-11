@@ -30,7 +30,7 @@ export const TrainPageWrapper = styled.div`
   padding-bottom: 30px;
   padding-top: 30px;
   ${mediaTablet(`
-  padding-top: 100px;
+  padding-top: 120px;
   `)}
 `;
 export const TrainsFilterContainer = styled.div`
@@ -42,5 +42,8 @@ export const TrainsPlugContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 80px;
+  ${mediaTablet(`
   padding-top: 200px;
+  `)}
 `;
